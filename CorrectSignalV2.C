@@ -457,7 +457,7 @@ void  CorrectSignalV2(  TString fileNameUnCorrectedFile = "myOutput",
         nJetEvents = histoJetEvents->GetBinContent(1)*1.17;
         DoJetAnalysis = kTRUE;
     }
-    //TFile *Jet_Unfolding = (TFile*)Form("RooUnfold/Jet_Unfolding_Corrections_%s_%i.root",optionEnergy.Data(),mode);
+
     TFile *Jet_Unfolding = new TFile(Form("RooUnfold/Jet_Unfolding_Corrections_%s_%i.root",optionEnergy.Data(),mode));
     if(DoJetAnalysis){
       TF1* unfolding_fit;
@@ -474,11 +474,9 @@ void  CorrectSignalV2(  TString fileNameUnCorrectedFile = "myOutput",
           value = value*(unfolding_fit->GetParameter(0) + unfolding_fit->GetParameter(1)*x);
           histoUnCorrectedYield[k]->SetBinContent(i, value);
         }
-	cout << "Debug Line: " << __LINE__ <<endl;
       }
     }
 
-	cout << "Debug Line: " << __LINE__ <<endl;
     Double_t scaleFactorMeasXSecForExternalInput              = 1;
     if ( kCollisionSystem == 0){
         // obtain effective xSection
@@ -601,7 +599,6 @@ void  CorrectSignalV2(  TString fileNameUnCorrectedFile = "myOutput",
           }
         }
     }
-	cout << "Debug Line: " << __LINE__ <<endl;
 
     TH1D* histoAcceptance                           = (TH1D*)fileCorrections->Get("fMCMesonAccepPt");
     TH1D* histoSecAcceptance[4]                     = {NULL, NULL, NULL, NULL};
@@ -2664,7 +2661,7 @@ void  CorrectSignalV2(  TString fileNameUnCorrectedFile = "myOutput",
             }
         } else if (mode == 2 || mode == 13 || mode == 4 || mode == 12){
             rangeAcc[0]         = 0.;
-            rangeAcc[1]         = 0.8; //0.3;
+            rangeAcc[1]         = 0.3;
         } else if (mode == 3 || mode == 5){
             rangeAcc[0]         = 0.;
             rangeAcc[1]         = 0.06;
@@ -2948,7 +2945,6 @@ void  CorrectSignalV2(  TString fileNameUnCorrectedFile = "myOutput",
           }else{
             unfolding_fit = (TF1*)Jet_Unfolding->Get("FinalFit_Eta");
           }
-	cout << "Debug Line: " << __LINE__ <<endl;
           TLatex T1;
           T1.SetTextSize(0.025);
           T1.SetTextAlign(12);
@@ -3162,7 +3158,6 @@ void  CorrectSignalV2(  TString fileNameUnCorrectedFile = "myOutput",
           }else{
             unfolding_fit = (TF1*)Jet_Unfolding->Get("FinalFit_Eta");
           }
-	cout << "Debug Line: " << __LINE__ <<endl;
           TLatex T1;
           T1.SetTextSize(0.025);
           T1.SetTextAlign(12);
@@ -3197,7 +3192,6 @@ void  CorrectSignalV2(  TString fileNameUnCorrectedFile = "myOutput",
         }else{
           unfolding_fit = (TF1*)Jet_Unfolding->Get("FinalFit_Eta");
         }
-	cout << "Debug Line: " << __LINE__ <<endl;
         TLatex T1;
         T1.SetTextSize(0.025);
         T1.SetTextAlign(12);
@@ -3249,7 +3243,6 @@ void  CorrectSignalV2(  TString fileNameUnCorrectedFile = "myOutput",
           }else{
             unfolding_fit = (TF1*)Jet_Unfolding->Get("FinalFit_Eta");
           }
-	cout << "Debug Line: " << __LINE__ <<endl;
           TLatex T1;
           T1.SetTextSize(0.025);
           T1.SetTextAlign(12);
