@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 # Settings
 DATE=`date +%y%m%d`
@@ -11,7 +11,7 @@ LATEST="NULL"
 # Directory path
 INITDIR=`pwd`
 LATESTWORKDIR="${INITDIR}/${LATEST}"
-WORKDIR="${INITDIR}/${WORKDIRNAME}"
+WORKDIR="${NITDIR}/${WORKDIRNAME}"
 CERNBOX="NULL" #cernbox directory path
 CERNBOXLATEST="NULL"
 
@@ -34,11 +34,15 @@ if [ "${LATEST}" != "NULL" ]
 then
 	echo /////////////////////////////////////////////////////////////////
 	echo /////////////////////////////////////////////////////////////////
-	echo ///////Latest working directory for ${ANALYSISNAME} = ${LATEST}/ 
-	echo ///////Files will be taken over to today\'s//////////////////////            
+	echo ///////Latest working directory for ${ANALYSISNAME} = ${LATEST}/
+	echo ///////Files will be taken over to today\'s//////////////////////
 	echo /////////////////////////////////////////////////////////////////
 	echo /////////////////////////////////////////////////////////////////
 	LATESTWORKDIR="${INITDIR}/${LATEST}"
+echo "INITDIR"
+echo ${INITDIR}
+echo "LATEST"
+echo ${LATEST}
 fi
 
 while : # Search working directory and make daughter
@@ -94,8 +98,10 @@ then
 			#cp -v -b --suffix=.bak ${LATESTWORKDIR}/*.cxx ./
 			#cp -v -b --suffix=.bak ${LATESTWORKDIR}/*.h ./
 			#cp -v -b --suffix=.bak ${LATESTWORKDIR}/*.C ./
-			cp -v -b --suffix=.bak ${LATESTWORKDIR}/*.sh ./
-			cp -v -b --suffix=.bak ${LATESTWORKDIR}/*.txt ./
+			gcp -v -b --suffix=.bak ${LATESTWORKDIR}/*.sh ./
+			gcp -v -b --suffix=.bak ${LATESTWORKDIR}/*.txt ./
+			gcp -v -b --suffix=.bak ${LATESTWORKDIR}/MyAnalysis.C ./
+			gcp -v -b --suffix=.bak ${LATESTWORKDIR}/MyUnfold.C ./
 			#cp -v -b --suffix=.bak ${LATESTWORKDIR}/* ./
 		fi
 	else
@@ -106,8 +112,8 @@ then
 		#cp -v -b --suffix=.bak ${CERNBOXLATEST}/*.cxx ./
 		#cp -v -b --suffix=.bak ${CERNBOXLATEST}/*.h ./
 		#cp -v -b --suffix=.bak ${CERNBOXLATEST}/*.C ./
-		cp -v -b --suffix=.bak ${CERNBOXLATEST}/*.sh ./
-		cp -v -b --suffix=.bak ${CERNBOXLATEST}/*.txt ./
+		gcp -v -b --suffix=.bak ${CERNBOXLATEST}/*.sh ./
+		gcp -v -b --suffix=.bak ${CERNBOXLATEST}/*.txt ./
 		#cp -v -b --suffix=.bak ${CERNBOXLATEST}/* ./
 	fi
 else
@@ -127,12 +133,12 @@ then
 	#git add 0_Unfold.sh
 	#git commit -m "New File1"
 	#git status
-	#git remote add origin https://github.com/hanseopark/PCGSOFT 
+	#git remote add origin https://github.com/hanseopark/PCGSOFT
 	#git push -u origin master
 	#git fetch origin
 	git config --global username "hapark"
 	git config --global user.email "hapark@cern.ch"
-	git pull origin MyAnalysis	
+	git pull origin MyAnalysis
 
 	echo "git test"
 fi
@@ -140,9 +146,36 @@ fi
 if [ "${PCGINIT}" = "y" ]
 then
 	cd ${WORKDIR}
-	bash /home/alidock/alice/pcg/AnalysisSoftware/prepareResultsDirectory.sh park 
+	bash /Users/hanseopark/alice/pcg/AnalysisSoftware/prepareResultsDirectory.sh park
 
 	echo "prepareResultDirectory.sh Execute"
 else
 	echo prepareResultsDirectory.sh won\'t be executed.
 fi
+
+
+# Check if take over MyAnalysisCode
+echo "Do you want to set the derectory My AnalysisCode for Result directory? (y/n)"
+read OWNRESULT
+
+if [ "${OWNRESULT}" = "y" ]
+then
+	cd ${WORKDIR}
+	mkdir MyResults
+	cp ../Result/Jet_Unfolding_Corrections_13TeV_4.root RooUnfold/./
+	cp ../Result/Jet_Unfolding_Corrections_13TeV_4_Default.root RooUnfold/./
+	cp ../MyCode/MyAnalysis.C ./
+	cp ../MyCode/MyAnalysisCutStudies.C ./
+	cp ../MyCode/MyAnalysisSystematicError.C ./
+	cp ../MyCode/MyUnfold.C ./
+	cp ../MyCode/Jet_Unfolding_Macro.C ./
+	cp ../MyCode/Jet_Unfolding_Macro_INT7.C ./
+	cp ../MyCode/Jet_Unfolding_Macro_EG1.C ./
+	cp ../MyCode/Jet_Unfolding_Macro_EG2.C ./
+	cp ../MyCode/TriggerCombination_PFR.dat ./
+	cp ../Result/MyRejectionFactor.root MyResults/./
+
+	echo "coping my code is done."
+
+fi
+
