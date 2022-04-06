@@ -1,0 +1,4 @@
+# ignore all eps, root, dat file
+*.eps
+*.root
+*.dat
