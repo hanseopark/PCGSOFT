@@ -1,0 +1,12 @@
+================================================
+(GA_pp_MC_AOD):
+================================================
+    *   Wagon Group name: Group CaloEMC
+    *   Wagon names: GammaEMC_13TeV_JetCorrelation_JetQA
+    *   Data-set: PYT8_13TeV_anchLHC16_AOD209, PYT8_13TeV_anchLHC16_AOD209_extra,PYT8_13TeV_anchLHC16_AOD209_extra2, PYT8_13TeV_anchLHC17_AOD209, PYT8_13TeV_anchLHC17_AOD209_extra, PYT8_13TeV_anchLHC18_AOD209, PYT8_13TeV_anchLHC18_AOD_extra
+    *   Run list: Current activated runlist is what I need
+    *   AliPhysics version: latest ROOT6
+    *   runwise: No
+    *   slow train: No
+    *	new added subwagon: Nothing
+

@@ -1,0 +1,9 @@
+train:			GA_pp_MC_AOD
+wagons:			GammaEMC_13TeV_JetCorrelation_JetQA, CDBConnect, EMCalMCJetFinder_LowPtCut, EMCalJetFinder_LowPtCut, EMCalCorrFrameworkTask_MC_Deafault, EmcalJetReader_LowPtCut, V0ReaderTask
+dataset:		PYT8_13TeV_anchLHC16_AOD209, PYT8_13TeV_anchLHC16_AOD209_extra,PYT8_13TeV_anchLHC16_AOD209_extra2, PYT8_13TeV_anchLHC17_AOD209, PYT8_13TeV_anchLHC17_AOD209_extra, PYT8_13TeV_anchLHC18_AOD209, PYT8_13TeV_anchLHC18_AOD_extra
+renwise:		yes
+runlist:		listDPGCalo
+aliphysics:		vAN-20191120-1
+slow-train-option:	Yes
+comment:		JetQA
+

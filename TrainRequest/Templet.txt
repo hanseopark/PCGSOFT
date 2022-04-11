@@ -1,0 +1,23 @@
+================================================
+(GA_pPb_MC_AOD):
+================================================
+    *   Wagon Group name: Group CaloEMC
+    *   Wagon names: GammaEMC_5TeV_JetCorrelation_DPMJET
+    *   Data-set: LHC18f3_DPMJET_pPb5TeV_ancLHC16qt_p1_FASTandWOSDD_AOD202
+    *   Run list: current activated lists are what I need
+    *   AliPhysics version: latest ROOT6
+    *   runwise: No
+    *   slow train: No
+    *	new added subwagon: Nothing
+
+================================================
+(GA_pPb_MC_AOD):
+================================================
+    *   Wagon Group name: Group CaloEMC
+    *   Wagon names: GammaEMC_5TeV_JetCorrelation_EPOS
+    *   Data-set: LHC17g8a_JJ_EPOSLHC_pPb5TeV_ancLHC16qt_p1_FASTandWOSDD_AOD202
+    *   Run list: current activated lists are what I need
+    *   AliPhysics version: latest ROOT6
+    *   runwise: No
+    *   slow train: No
+    *	new added subwagon: Nothing
