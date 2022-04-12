@@ -1,0 +1,11 @@
+4
+Yes
+13TeV
+No
+No
+Default
+25 
+14
+No
+G
+Yes

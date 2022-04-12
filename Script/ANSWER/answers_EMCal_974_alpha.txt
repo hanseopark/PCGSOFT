@@ -1,0 +1,9 @@
+Alpha
+No
+4
+Yes
+13TeV
+No
+No
+Default
+Yes

@@ -1,0 +1,13 @@
+4
+Yes
+13TeV
+No
+No
+Default
+24
+9
+No
+G
+Yes
+/home/alidock/alice/work/Data/pp_13TeV/MCMerged/GammaCalo_912.root 
+Yes

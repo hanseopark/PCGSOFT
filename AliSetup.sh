@@ -21,9 +21,6 @@ OWNGIT="NO"
 LOCAL="$2"
 PCGINIT="$3"
 
-# Preparing on PCGSOFT
-cp AliSetup.sh ${PCGDIR}/.
-
 # Load cernbox local path
 if [ -e ${HOME}/.local/share/data/CERNBox/cernbox.cfg ]
 then
@@ -119,6 +116,7 @@ else
 	echo File are not taken over.
 fi
 
+
 if [ "${PCGINIT}" = "y" ]
 then
 	cd ${WORKDIR}
@@ -128,10 +126,16 @@ then
 
 	echo "Pull script for ${ANALYSISNAME}"
 	SCRDIR="${PCGDIR}/Script/${ANALYSISNAME}"
+	ANSDIR="${PCGDIR}/Script/ANSWER"
 	RESDIR="${PCGDIR}/Result"
+
+	mkdir 0_Script # Run script files
+	mkdir 0_Answers # answer files for run script
 	if [ -d "$SCRDIR" ]; then
-		cp ${SCRDIR}/*.sh .
-		echo "Complete pull ALL script for ${ANALYSISNAME}"
+		#cp ${SCRDIR}/*.sh .
+		ln -s ${SCRDIR}/*.sh 0_Script/.
+		ln -s ${ANSDIR}/*.txt 0_Answers/.
+		echo "Complete pull linked ALL script and txt for ${ANALYSISNAME}"
 	else
 		echo ${SCRDIR} is not exists.
 	fi
