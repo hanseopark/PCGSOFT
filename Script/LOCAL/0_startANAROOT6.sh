@@ -40,16 +40,25 @@ runNumber="296623"
 period="18q"
 LocalDIR="/Users/hanseopark/alice/work/Data/LocalFiles/$energy/$runPeriod/$tenderPassData/$dataType/$runNumber"
 if [ isLX = "kTRUE" ]; then
-	fileListName="test$period${AODORESD}_lx"
+	fileListName="test$runPeriod${dataType}_lx"
 else
-	fileListName="test$period$AODORESD"
+	fileListName="test$runPeriod$dataType"
 fi
-touch -f ${fileListName}.txt
+if [ -f ${fileListName}.txt ]; then
+	echo "file ${fileListName}.txt has already been made. "
+	echo "remove ${fileListName}.txt "
+	rm ${fileListName}.txt
+	rm ../$energy/$runPeriod/${fileListName}.txt
+else
+	touch -f ${fileListName}.txt
+fi
 for i in {1..$numLocalFiles}
 do
-	number=$( printf '%04d' $i)
-	echo "$LocalDIR/$number/root_archive.zip" > ${fileListName}.txt
+		number=$( printf '%04d' $i)
+		echo "$LocalDIR/$number/root_archive.zip" >> ${fileListName}.txt
 done
+cp ${fileListName}.txt ../$energy/$runPeriod/.
+
 
 ######################
 ####### RUN ##########

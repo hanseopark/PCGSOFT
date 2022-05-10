@@ -86,8 +86,8 @@ void runInJetPbPb(
     cout << dataType.Data() << " analysis chosen" << endl;
     // Check type of input and create handler for it
     TString localFiles("-1");
-	if(isLxplus) localFiles                       = Form("../test16g%s_lx.txt",dataType.Data());
-	else localFiles                               = Form("../test16g%s.txt",dataType.Data());
+	if(isLxplus) localFiles                       = Form("../test%s%s_lx.txt",runPeriodData.Data(),dataType.Data());
+	else localFiles                               = Form("../test%s%s.txt",runPeriodData.Data(),dataType.Data());
     if(chunk != -1)
       localFiles                                  = Form("../testSample%s_%d.txt",dataType.Data(),chunk);
 
