@@ -64,12 +64,13 @@ fi
 if [ $dataOrMC = "data" ]; then
     if [ $ESDOrAOD = "AOD" ]; then
         passDL="$pass/AOD$AODFILTER"
-        downloadFile=root_archive.zip
+        #downloadFile=root_archive.zip
         #downloadFile=aod_archive.zip
+        downloadFile=AliAOD.root
     fi
     mkdir -p $localpath/$energy/$periodData/$pass/$ESDOrAOD/$RUN/
 	if [ $energy = "PbPb_5TeV" ]; then
-		partsLINK="/alice/data/$yearData/$periodData/000$RUN/$passDL/PWGGA/GA_PbPb_AOD/809_20220126-1028_child_1"
+		partsLINK="/alice/data/$yearData/$periodData/000$RUN/$passDL/$ESDOrAOD"
 	else
 		partsLINK="/alice/data/$yearData/$periodData/000$RUN/$passDL"
 	fi

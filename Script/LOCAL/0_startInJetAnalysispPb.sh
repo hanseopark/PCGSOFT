@@ -5,15 +5,15 @@
 # exit
 # fi
 
-energy="PbPb_5TeV"
+energy="pPb_5TeV"
 intMCrunning=0 #0: data, 1: MC, 2: JJ MC
 collsys=1 #0: pp, 1: PbPb, 2: pPb
-runPeriod="LHC18q"
-runPeriodData="LHC18q"
+runPeriod="LHC16g"
+runPeriodData="LHC16g"
 dataType="AOD" #ESD or AOD
 runMode="C" #switch for which tasks to run: QA (photon and cluster QA), P (PCM), C (Calo [EMC, DMC, PHOS]), H (hybrid PCM-Calo), M (merged EMC), S (skimming ESD or AOD)
 recoPassData=1
-tenderPassData="pass3"
+tenderPassData="pass1"
 useCorrTask="kTRUE"
 #useCorrTask="kFALSE"
 aodConversionCutnumber="00000003_06000008d00100001100000000"; #It is
@@ -36,7 +36,7 @@ cd FileLists
 ###################################
 ####### CREATE FILE LISTS #########
 ###################################
-runNumber="296623"
+runNumber="254332"
 LocalDIR="/Users/hanseopark/alice/work/Data/LocalFiles/$energy/$runPeriod/$tenderPassData/$dataType/$runNumber"
 if [ isLX = "kTRUE" ]; then
 	fileListName="test$runPeriod${dataType}_lx"
@@ -54,8 +54,7 @@ fi
 for i in {1..$numLocalFiles}
 do
 		number=$( printf '%04d' $i)
-		#echo "$LocalDIR/$number/root_archive.zip" >> ${fileListName}.txt
-		echo "$LocalDIR/$number/aod_archive.zip" >> ${fileListName}.txt
+		echo "$LocalDIR/$number/root_archive.zip" >> ${fileListName}.txt
 done
 cp ${fileListName}.txt ../$energy/$runPeriod/.
 
@@ -64,9 +63,13 @@ cp ${fileListName}.txt ../$energy/$runPeriod/.
 ######################
 cd ../$workDIR
 ###valgrind --tool=callgrind aliroot -x -l -b -q '../../../runLocalAnalysisROOT6.C('$intMCrunning','$collsys', "'$runPeriod'", "'$runPeriodData'", "'$dataType'", "'$runMode'", '$recoPassData', "'$tenderPassData'", '$useCorrTask', "'$aodConversionCutnumber'", '$isRun2', '$numLocalFiles')'
-if [ $collsys = 0 ]; then
-aliroot -x -l -b -q '../../../runInJetpp.C.C('$intMCrunning','$collsys', "'$runPeriod'", "'$runPeriodData'", "'$dataType'", "'$runMode'", '$recoPassData', "'$tenderPassData'", '$useCorrTask', "'$aodConversionCutnumber'", '$isRun2', '$numLocalFiles', '$isLx')'
+if [ $collsys -eq 0 ]; then
+aliroot -x -l -b -q '../../../runInJetpp.C('$intMCrunning','$collsys', "'$runPeriod'", "'$runPeriodData'", "'$dataType'", "'$runMode'", '$recoPassData', "'$tenderPassData'", '$useCorrTask', "'$aodConversionCutnumber'", '$isRun2', '$numLocalFiles', '$isLx')'
 fi
-if [ $collsys = 1 ]; then
+if [ $collsys -eq 1 ]; then
 aliroot -x -l -b -q '../../../runInJetPbPb.C('$intMCrunning','$collsys', "'$runPeriod'", "'$runPeriodData'", "'$dataType'", "'$runMode'", '$recoPassData', "'$tenderPassData'", '$useCorrTask', "'$aodConversionCutnumber'", '$isRun2', '$numLocalFiles', '$isLx')'
 fi
+if [ $collsys -eq 2 ]; then
+aliroot -x -l -b -q '../../../runInJetpPb.C('$intMCrunning','$collsys', "'$runPeriod'", "'$runPeriodData'", "'$dataType'", "'$runMode'", '$recoPassData', "'$tenderPassData'", '$useCorrTask', "'$aodConversionCutnumber'", '$isRun2', '$numLocalFiles', '$isLx')'
+fi
+
