@@ -7,13 +7,13 @@
 
 energy="pPb_5TeV"
 intMCrunning=0 #0: data, 1: MC, 2: JJ MC
-collsys=1 #0: pp, 1: PbPb, 2: pPb
-runPeriod="LHC16g"
-runPeriodData="LHC16g"
+collsys=2 #0: pp, 1: PbPb, 2: pPb
+runPeriod="LHC16r"
+runPeriodData="LHC16r"
 dataType="AOD" #ESD or AOD
 runMode="C" #switch for which tasks to run: QA (photon and cluster QA), P (PCM), C (Calo [EMC, DMC, PHOS]), H (hybrid PCM-Calo), M (merged EMC), S (skimming ESD or AOD)
 recoPassData=1
-tenderPassData="pass1"
+tenderPassData="pass2"
 useCorrTask="kTRUE"
 #useCorrTask="kFALSE"
 aodConversionCutnumber="00000003_06000008d00100001100000000"; #It is
@@ -22,7 +22,7 @@ aodConversionCutnumber="00000003_06000008d00100001100000000"; #It is
                         #06000008d00100001100000000
                         #00000008400100001500000000
                         # aod: 00000003_06000008d00100001100000000
-numLocalFiles=2
+numLocalFiles=1
 isRun2="kTRUE"
 isLx="kFALSE"
 
@@ -36,7 +36,7 @@ cd FileLists
 ###################################
 ####### CREATE FILE LISTS #########
 ###################################
-runNumber="254332"
+runNumber="265594"
 LocalDIR="/Users/hanseopark/alice/work/Data/LocalFiles/$energy/$runPeriod/$tenderPassData/$dataType/$runNumber"
 if [ isLX = "kTRUE" ]; then
 	fileListName="test$runPeriod${dataType}_lx"

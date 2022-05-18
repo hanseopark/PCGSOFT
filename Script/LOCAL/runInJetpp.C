@@ -477,7 +477,9 @@ void runInJetpp(
     if(runMode.Contains("C")){
         #if !defined (__CINT__) || defined (__CLING__)
             if(collsys==0){
-	            AddTask_GammaCalo_pp(0, intMCrunning, "06000008400100001000000000", runPeriod.Data(), 1, 1, 3, 0, kFALSE, 0, kFALSE,"3.", 0,"FMUW:fileNameMultWeights;FEPC:fileNamedEdxPostCalib", 0, runPeriod.Data(),kFALSE, runPeriod.Data(),kTRUE,!taskNameSpecial.CompareTo("") ? "950" : Form("950_CF%s",taskNameSpecial.Data()));
+	            // AddTask_GammaCalo_pp(0, intMCrunning, "06000008400100001000000000", runPeriod.Data(), 1, 1, 3, 0, kFALSE, 0, kFALSE,"3.", 0,"FMUW:fileNameMultWeights;FEPC:fileNamedEdxPostCalib", 0, runPeriod.Data(),kFALSE, runPeriod.Data(),kTRUE,!taskNameSpecial.CompareTo("") ? "950" : Form("950_CF%s",taskNameSpecial.Data()));
+	            AddTask_GammaCalo_pp(0, intMCrunning, "06000008400100001000000000", runPeriod.Data(), 1, 1, 3, 0, kFALSE, 0, kFALSE,"3.", 0,"FMUW:fileNameMultWeights;FEPC:fileNamedEdxPostCalib", 0, runPeriod.Data(),kFALSE, runPeriod.Data(),kTRUE,!taskNameSpecial.CompareTo("") ? "912" : Form("912_CF%s",taskNameSpecial.Data()));
+	            // AddTask_GammaCalo_pp(0, intMCrunning, "06000008400100001000000000", runPeriod.Data(), 1, 1, 3, 0, kFALSE, 0, kFALSE,"3.", 0,"FMUW:fileNameMultWeights;FEPC:fileNamedEdxPostCalib", 0, runPeriod.Data(),kFALSE, runPeriod.Data(),kTRUE,!taskNameSpecial.CompareTo("") ? "951" : Form("951_CF%s",taskNameSpecial.Data()));
                 // AddTask_GammaCalo_pp(0, intMCrunning, "06000008400100001000000000", runPeriod.Data(), 1, 1, 3, 0, kFALSE, 0, kFALSE,"3.", 0,"FMUW:fileNameMultWeights;FEPC:fileNamedEdxPostCalib", 0, runPeriod.Data(),kFALSE, runPeriod.Data(),kTRUE,!taskNameSpecial.CompareTo("") ? "2062" : Form("2062_CF%s",taskNameSpecial.Data()));
             }
             if(collsys==2){

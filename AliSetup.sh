@@ -3,7 +3,9 @@
 # Settings
 DATE=`date +%y%m%d`
 DAUGHTER=0
-ANALYSISNAME="$1"
+collsys="$1"
+energy="$2"
+ANALYSISNAME="$3"
 ANALYSISNAME=${ANALYSISNAME:-"NoNamed"}
 WORKDIRNAME="${DATE}_${DAUGHTER}_${ANALYSISNAME}"
 LATEST="NULL"
@@ -18,8 +20,8 @@ CERNBOXLATEST="NULL"
 
 # Flags
 OWNGIT="NO"
-LOCAL="$2"
-PCGINIT="$3"
+LOCAL="$4"
+PCGINIT="$5"
 
 # Load cernbox local path
 if [ -e ${HOME}/.local/share/data/CERNBox/cernbox.cfg ]
@@ -125,9 +127,9 @@ then
 	echo "prepareResultDirectory.sh Execute"
 
 	echo "Pull script for ${ANALYSISNAME}"
-	SCRDIR="${PCGDIR}/Script/${ANALYSISNAME}"
-	ANSDIR="${PCGDIR}/Script/ANSWER"
-	RESDIR="${PCGDIR}/Result"
+	SCRDIR="${PCGDIR}/Script/${collsys}/${ANALYSISNAME}"
+	ANSDIR="${PCGDIR}/Script/${collsys}/ANSWER"
+	RESDIR="${PCGDIR}/Result/${collsys}"
 
 	mkdir 0_Script # Run script files
 	mkdir 0_Answers # answer files for run script
@@ -141,8 +143,8 @@ then
 	fi
 	if [ -d "$RESDIR" ]; then
 		#cp ${RESDIR}/*.root .
-		cp ${RESDIR}/Jet_Unfolding_Corrections_13TeV_4.root RooUnfold/.
-		cp ${RESDIR}/Jet_Unfolding_Corrections_13TeV_4_Default.root RooUnfold/.
+		cp ${RESDIR}/Jet_Unfolding_Corrections_${energy}_4.root RooUnfold/.
+		cp ${RESDIR}/Jet_Unfolding_Corrections_${energy}_4_Default.root RooUnfold/.
 		echo "To copy for Unfolding file with latest analysis"
 	else
 		echo ${RESDIR} is not exists.

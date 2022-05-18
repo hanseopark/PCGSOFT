@@ -18,7 +18,7 @@ R__ADD_INCLUDE_PATH($ALICE_PHYSICS)
 //#include <PWGGA/GammaConv/macros/AddTask_GammaConvV1_pPb.C>
 //#include <PWGGA/GammaConv/macros/AddTask_GammaConvV1_PbPb.C>
 #include <PWGGA/GammaConv/macros/AddTask_GammaCalo_pp.C>
-//#include <PWGGA/GammaConv/macros/AddTask_GammaCalo_pPb.C>
+#include <PWGGA/GammaConv/macros/AddTask_GammaCalo_pPb.C>
 #include <PWGGA/GammaConv/macros/AddTask_GammaCalo_PbPb.C>
 #include <PWGGA/GammaConv/macros/AddTask_GammaConvCalo_pp.C>
 #include <PWGGA/GammaConv/macros/AddTask_GammaHeavyMeson_ConvMode_pp.C>
@@ -176,7 +176,8 @@ void runInJetpPb(
      TString taskNameSpecial2                     = "";
      TString taskNameSpecial3                     = "";
      TString taskNameSpecial4                     = "";
-     const UInt_t  kPhysSel                      = AliVEvent::kAny;
+     // const UInt_t  kPhysSel                      = AliVEvent::kAny;
+     const UInt_t  kPhysSel                      = AliVEvent::kINT7;
      if(useCorrTask){
          AliEmcalCorrectionTask * correctionTask = AliEmcalCorrectionTask::AddTaskEmcalCorrectionTask("");
          correctionTask->SelectCollisionCandidates(kPhysSel);
@@ -481,7 +482,8 @@ void runInJetpPb(
                 // AddTask_GammaCalo_pp(0, intMCrunning, "06000008400100001000000000", runPeriod.Data(), 1, 1, 3, 0, kFALSE, 0, kFALSE,"3.", 0,"FMUW:fileNameMultWeights;FEPC:fileNamedEdxPostCalib", 0, runPeriod.Data(),kFALSE, runPeriod.Data(),kTRUE,!taskNameSpecial.CompareTo("") ? "2062" : Form("2062_CF%s",taskNameSpecial.Data()));
             }
             if(collsys==2){
-              //AddTask_GammaConvNeutralMesonPiPlPiMiNeutralMeson_CaloMode_pPb(0,intMCrunning,"06000008400100001000000000",0, 0, 1,kFALSE,kFALSE,"3.",kFALSE,"",-1,runPeriod.Data(),0,1500, !taskNameSpecial.CompareTo("") ? "1010" : Form("1010_CF%s",taskNameSpecial.Data()));
+	            AddTask_GammaCalo_pPb(0, intMCrunning, "06000008400100001000000000", runPeriod.Data(), 1, 1, 3, 0, kFALSE, 0, kFALSE,"3.", 0,"FMUW:fileNameMultWeights;FEPC:fileNamedEdxPostCalib", 0, runPeriod.Data(),kFALSE, runPeriod.Data(),kTRUE,!taskNameSpecial.CompareTo("") ? "190" : Form("950_CF%s",taskNameSpecial.Data()));
+              // AddTask_GammaConvNeutralMesonPiPlPiMiNeutralMeson_CaloMode_pPb(0,intMCrunning,"06000008400100001000000000",0, 0, 1,kFALSE,kFALSE,"3.",kFALSE,"",-1,runPeriod.Data(),0,1500, !taskNameSpecial.CompareTo("") ? "1010" : Form("1010_CF%s",taskNameSpecial.Data()));
 
                 // AddTask_GammaCalo_PbPb(0, intMCrunning, "10000008400100001500000000", runPeriod.Data(), 1, 1, 1, kFALSE, kFALSE, kFALSE, kFALSE,"3.", 0,"FMUW:fileNameMultWeights;FEPC:fileNamedEdxPostCalib", kFALSE, 0, "",kFALSE, "",kTRUE,kFALSE,!taskNameSpecial.CompareTo("") ? "264" : Form("264_CF%s",taskNameSpecial.Data()));
             }
