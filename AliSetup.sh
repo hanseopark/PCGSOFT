@@ -15,6 +15,9 @@ INITDIR=`pwd`
 LATESTWORKDIR="${INITDIR}/${LATEST}"
 WORKDIR="${INITDIR}/${WORKDIRNAME}"
 PCGDIR="$HOME/alice/work/PCGSOFT"
+SCRDIR="${PCGDIR}/Script/${collsys}/${ANALYSISNAME}"
+ANSDIR="${PCGDIR}/Script/${collsys}/ANSWER"
+RESDIR="${PCGDIR}/Result/${collsys}"
 CERNBOX="NULL" #cernbox directory path
 CERNBOXLATEST="NULL"
 
@@ -83,6 +86,8 @@ mkdir ${WORKDIRNAME}
 #cd ${WORKDIRNAME}
 #git checkout ${ANALYSISNAME}
 
+# Clone from scripts and andswers in latest directory to PCGSOFT
+
 # Take over analysis codes
 if [ "${LOCAL}" = "y" ]
 then
@@ -91,7 +96,7 @@ then
 	then
 		if [ "${LATEST}" != "NULL" ]
 		then
-			echo Files are copied from ${LATESTWORKDIR}
+			echo Files copied from ${LATESTWORKDIR} clone to PCGSOT
 			# /////////////////////////////////////////
 			# // Add file type you want to take over //
 			# /////////////////////////////////////////
@@ -99,8 +104,10 @@ then
 			#cp ${LATESTWORKDIR}/*.h ./
 			#cp ${LATESTWORKDIR}/*.C ./
 			#cp ${LATESTWORKDIR}/* ./
-			cp ${LATESTWORKDIR}/*.sh ./
-			cp ${LATESTWORKDIR}/*.txt ./
+			#cp ${LATESTWORKDIR}/*.sh ./
+			#cp ${LATESTWORKDIR}/*.txt ./
+			cp -i ${LATESTWORKDIR}/0_Script/*.sh ${SCRDIR}/.
+			cp -i ${LATESTWORKDIR}/0_Answers/*.txt ${ANSDIR}/.
 		fi
 	else
 		echo Files are copied from ${CERNBOXLATEST}
@@ -127,10 +134,6 @@ then
 	echo "prepareResultDirectory.sh Execute"
 
 	echo "Pull script for ${ANALYSISNAME}"
-	SCRDIR="${PCGDIR}/Script/${collsys}/${ANALYSISNAME}"
-	ANSDIR="${PCGDIR}/Script/${collsys}/ANSWER"
-	RESDIR="${PCGDIR}/Result/${collsys}"
-
 	mkdir 0_Script # Run script files
 	mkdir 0_Answers # answer files for run script
 	if [ -d "$SCRDIR" ]; then

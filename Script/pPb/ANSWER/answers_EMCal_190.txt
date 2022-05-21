@@ -1,0 +1,12 @@
+4
+Yes
+pPb_5.023TeV
+No
+No
+Default
+35
+6
+Yes
+No
+G
+Yes
