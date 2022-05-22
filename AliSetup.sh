@@ -9,6 +9,11 @@ ANALYSISNAME="$3"
 ANALYSISNAME=${ANALYSISNAME:-"NoNamed"}
 WORKDIRNAME="${DATE}_${DAUGHTER}_${ANALYSISNAME}"
 LATEST="NULL"
+if [ ${energy} = "5TeV" ]
+then
+	energy="5.023TeVRun2"
+
+fi
 
 # Directory path
 INITDIR=`pwd`
