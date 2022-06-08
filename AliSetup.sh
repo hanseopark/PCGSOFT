@@ -149,6 +149,10 @@ then
 	else
 		echo ${SCRDIR} is not exists.
 	fi
+	if [ "${ANALYSISNAME}" = "Comb" ]; then
+		echo "Combination of all method"
+		ln -s ${PCGDIR}/Script/0_CombineMeasurement.sh .
+	fi
 	if [ -d "$RESDIR" ]; then
 		#cp ${RESDIR}/*.root .
 		cp ${RESDIR}/Jet_Unfolding_Corrections_${energy}_4.root RooUnfold/.

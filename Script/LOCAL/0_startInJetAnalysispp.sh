@@ -5,6 +5,7 @@
 # exit
 # fi
 
+analysis="InJet"
 energy="pp_13TeV"
 intMCrunning=0 #0: data, 1: MC, 2: JJ MC
 collsys=0 #0: pp, 1: PbPb, 2: pPb
@@ -26,7 +27,7 @@ numLocalFiles=2
 isRun2="kTRUE"
 isLx="kFALSE"
 
-workDIR="$energy/$runPeriod/$runMode$dataType"
+workDIR="$analysis/$energy/$runPeriod/$runMode$dataType"
 mkdir -p $workDIR
 cd FileLists
 #cd $energy/$runPeriod
@@ -64,8 +65,8 @@ cp ${fileListName}.txt ../$energy/$runPeriod/.
 cd ../$workDIR
 ###valgrind --tool=callgrind aliroot -x -l -b -q '../../../runLocalAnalysisROOT6.C('$intMCrunning','$collsys', "'$runPeriod'", "'$runPeriodData'", "'$dataType'", "'$runMode'", '$recoPassData', "'$tenderPassData'", '$useCorrTask', "'$aodConversionCutnumber'", '$isRun2', '$numLocalFiles')'
 if [ $collsys -eq 0 ]; then
-aliroot -x -l -b -q '../../../runInJetpp.C('$intMCrunning','$collsys', "'$runPeriod'", "'$runPeriodData'", "'$dataType'", "'$runMode'", '$recoPassData', "'$tenderPassData'", '$useCorrTask', "'$aodConversionCutnumber'", '$isRun2', '$numLocalFiles', '$isLx')'
+aliroot -x -l -b -q '../../../../runInJetpp.C('$intMCrunning','$collsys', "'$runPeriod'", "'$runPeriodData'", "'$dataType'", "'$runMode'", '$recoPassData', "'$tenderPassData'", '$useCorrTask', "'$aodConversionCutnumber'", '$isRun2', '$numLocalFiles', '$isLx')'
 fi
 if [ $collsys -eq 1 ]; then
-aliroot -x -l -b -q '../../../runInJetPbPb.C('$intMCrunning','$collsys', "'$runPeriod'", "'$runPeriodData'", "'$dataType'", "'$runMode'", '$recoPassData', "'$tenderPassData'", '$useCorrTask', "'$aodConversionCutnumber'", '$isRun2', '$numLocalFiles', '$isLx')'
+aliroot -x -l -b -q '../../../../runInJetPbPb.C('$intMCrunning','$collsys', "'$runPeriod'", "'$runPeriodData'", "'$dataType'", "'$runMode'", '$recoPassData', "'$tenderPassData'", '$useCorrTask', "'$aodConversionCutnumber'", '$isRun2', '$numLocalFiles', '$isLx')'
 fi
